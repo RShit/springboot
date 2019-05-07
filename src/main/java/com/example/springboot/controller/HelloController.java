@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+
     @RequestMapping("hello")
     public String hello(){
 
@@ -14,6 +15,6 @@ public class HelloController {
     @RequestMapping("hello1")
     public String hello1(){
 
-        return "helloWorld";
+        return "helloWorld1";
     }
 }
