@@ -16,7 +16,7 @@ public class DbServiceImpl implements DbService {
 
     @Override
     public List<VocabListDTO> getAllData() {
-        List<VocabListDTO> allData = dbMappper.getAllData();
+        List<VocabListDTO> allData = dbMappper.selectAllData();
         return allData;
     }
 }

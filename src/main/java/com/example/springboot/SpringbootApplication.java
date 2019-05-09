@@ -1,22 +1,29 @@
 package com.example.springboot;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
 @SpringBootApplication
 @MapperScan("com.example.springboot.mapper")
-public class SpringbootApplication {
+public class SpringbootApplication implements ApplicationRunner {
 
+	private static final Logger logger = LogManager.getLogger(SpringbootApplication.class);
 	public static void main(String[] args) {
-		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("utf-8");
-		characterEncodingFilter.setForceEncoding(true);
 		SpringApplication.run(SpringbootApplication.class, args);
 
+	}
+	@Override
+	public void run(ApplicationArguments applicationArguments) throws Exception {
+		logger.debug("Debugging log");
+		logger.info("Info log");
+		logger.warn("Hey, This is a warning!");
+		logger.error("Oops! We have an Error. OK");
+		logger.fatal("Damn! Fatal error. Please fix me.");
 	}
 
 }

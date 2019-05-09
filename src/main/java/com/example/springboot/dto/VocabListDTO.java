@@ -75,18 +75,4 @@ public class VocabListDTO {
     public void setUpdateUserId(Long updateUserId) {
         this.updateUserId = updateUserId;
     }
-
-    @Override
-    public String toString() {
-        return "VocabListDTO{" +
-                "vocabListId=" + vocabListId +
-                ", tenantId=" + tenantId +
-                ", name='" + name + '\'' +
-                ", dictId=" + dictId +
-                ", status='" + status + '\'' +
-                ", remark='" + remark + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateUserId=" + updateUserId +
-                '}';
-    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springboot.mapper.DbMappper">
+
+    <resultMap id="BaseResultMap" type="com.example.springboot.dto.VocabListDTO">
+        <id column="vocabListId" property="vocabListId" jdbcType="BIGINT"/>
+        <result column="tenantId" property="tenantId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="dictId" property="dictId" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="updateUserId" property="updateUserId" jdbcType="BIGINT"/>
+        <result column="updateTime" property="updateTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      vocabListId, name, dictId
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from vd_vocab_list
+        where id = #{vocabListId,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAllData" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from vd_vocab_list
+    </select>
+
+</mapper>

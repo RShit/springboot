@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="application/javascript" src="../js/jquery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script type="application/javascript" src="../layui/layui.all.js"></script>
+</head>
+<body>
+<div id="data"></div>
+</body>
+<script>
+    $(function () {
+        initData();
+    })
+    function initData() {
+        $.ajax({
+            url:"/db/getProject",
+            data:{},
+            dataType:"json",
+            type:"post",
+            success:function (data) {
+                layer.msg(JSON.stringify(data));
+                $("#data").html(JSON.stringify(data));
+            }
+        })
+    }
+</script>
+</html>

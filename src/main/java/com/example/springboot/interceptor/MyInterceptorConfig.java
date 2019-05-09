@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.nio.charset.Charset;
@@ -15,7 +16,6 @@ import java.util.List;
 public class MyInterceptorConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-
         super.addInterceptors(registry);
         registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
     }
@@ -40,4 +40,9 @@ public class MyInterceptorConfig extends WebMvcConfigurationSupport {
         configurer.favorPathExtension(false);
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/");
+    }
 }

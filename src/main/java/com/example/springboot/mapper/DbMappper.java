@@ -1,11 +1,12 @@
 package com.example.springboot.mapper;
 
 import com.example.springboot.dto.VocabListDTO;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface DbMappper {
-    List<VocabListDTO> getAllData();
+    List<VocabListDTO> selectAllData();
 }
