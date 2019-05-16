@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th=http://www.thymeleaf.org>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="../css/verify.css" />
-    <script type="application/javascript" src="../js/jquery/jquery-3.4.1.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.all.js"></script>
-    <script type="application/javascript" src="../js/verify/verify.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/verify.css}" />
+    <script type="application/javascript" th:src="@{layui/layui.all.js}"></script>
+    <script type="application/javascript" th:src="@{js/verify/verify.min.js}"></script>
+    <script type="application/javascript" th:src="@{js/jquery/jquery-3.4.1.min.js}"></script>
 </head>
 <body>
-    <form action="/dologin" method="post">
-        <div class="login-item clear">
-            <i class="user-icon"></i>
-            <input type="text" placeholder="用户名" class="login-fill" id="userName" name="userName" value=""/>
-        </div>
-        <div class="login-item clear">
-            <i class="password-icon"></i>
-            <input type="password" placeholder="密码" class="login-fill" name="password" value="" id="password"/>
-        </div>
-        <div class="login-item  login-code fl" id="verify">
-        </div>
-        <a href="#" class="forget">忘记密码?</a>
-        <button class="loginBtn" type="button" id="submitBtn">登录</button>
-        <a href="#" id="modifyPass" class="forget" style="padding-right: 10px">修改密码</a>
-    </form>
+<form action="/dologin" method="post" id="form">
+    <div class="login-item clear">
+        <i class="user-icon"></i>
+        <input type="text" placeholder="用户名" class="login-fill" id="userName" name="userName" value=""/>
+    </div>
+    <div class="login-item clear">
+        <i class="password-icon"></i>
+        <input type="password" placeholder="密码" class="login-fill" name="password" value="" id="password"/>
+    </div>
+    <div class="login-item  login-code fl" id="verify">
+    </div>
+    <div class="clear">
+        <p class="notice fl" id='loginError'></p>
+    </div>
+    <a href="#" class="forget">忘记密码?</a>
+    <button class="loginBtn" type="button" id="submitBtn">登录</button>
+    <a href="#" id="modifyPass" class="forget" style="padding-right: 10px">修改密码</a>
+</form>
 </body>
 <script>
+
+    /*$(function () {
+        var user='${user}'; //这种方法取出来是user是String类型
+    })
 
     $('#verify').codeVerify({
         type : 1,
@@ -46,24 +53,8 @@
     });
 
     function submitForm() {
-        var userName = $("#userName").val();
-        var password = $("#password").val();
-
-        $.ajax({
-            url:"/dologin",
-            data:{"userName":userName,"password":password},
-            dataType:"json",
-            type:"post",
-            success:function (data) {
-                if (data.flag) {
-                    layer.msg(data.msg);
-                    window.open("/db/getProjectHtml","_self");
-                } else {
-                    layer.msg(data.msg);
-                }
-            }
-        })
-    }
+        $("#form").submit();
+    }*/
 
 </script>
 </html>

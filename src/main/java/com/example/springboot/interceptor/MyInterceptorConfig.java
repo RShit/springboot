@@ -17,7 +17,7 @@ public class MyInterceptorConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**");
+        // registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/", "/login.html");
     }
 
     @Bean

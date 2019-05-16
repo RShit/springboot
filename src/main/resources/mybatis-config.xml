@@ -9,6 +9,6 @@
 
     <typeAliases>
         <!--设置别名-->
-        <!--<package name="com.roachfu.tutorial.entity"/>-->
+        <package name="com.example.springboot.entity"/>
     </typeAliases>
 </configuration>
