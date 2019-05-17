@@ -16,8 +16,7 @@ import java.util.List;
 public class MyInterceptorConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        super.addInterceptors(registry);
-        // registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/", "/login.html");
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/css/**","/fonts/**","/js/**","/layui/**","/favicon.ico", "/login","/dologin");
     }
 
     @Bean

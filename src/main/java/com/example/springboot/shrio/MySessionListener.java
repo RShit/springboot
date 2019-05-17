@@ -24,4 +24,6 @@ public class MySessionListener implements SessionListener {
 		log.debug("Session stop ID:{}, starttime:{}", session.getId(), session.getStartTimestamp());
 		ShiroSessionCache.expire(session.getId());
 	}
+
+
 }

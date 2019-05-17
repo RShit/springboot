@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th=http://www.thymeleaf.org>
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <script type="application/javascript" src="../js/jquery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{../layui/css/layui.css}">
+    <script type="application/javascript" th:src="@{../js/jquery/jquery-3.4.1.min.js}"></script>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -90,7 +90,7 @@
         © layui.com - 底部固定区域
     </div>
 </div>
-<script src="../layui/layui.js"></script>
+<script th:src="@{../layui/layui.js}"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function() {
