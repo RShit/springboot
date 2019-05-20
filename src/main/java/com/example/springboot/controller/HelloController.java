@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @date 2019年5月7日16:15:35
+ * @author liuyy
+ * 测试类
+ */
 @RestController
 public class HelloController {
 

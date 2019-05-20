@@ -1,7 +1,6 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.dto.LoginDTO;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -16,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 
+/**
+ * 登录、注销
+ * @author liuyy
+ * @date 2019年5月7日16:18:04
+ */
 @Controller
 public class PassController {
 

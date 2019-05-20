@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+/**
+ * @author liuyy
+ * @date 2019年5月7日16:16:08
+ * 数据库测试
+ */
 @Controller
 @RequestMapping("/db")
 public class DbController {

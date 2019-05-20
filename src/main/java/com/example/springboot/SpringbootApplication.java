@@ -2,7 +2,6 @@ package com.example.springboot;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,6 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
+/**
+ * @author liuyy
+ * @date 2019年5月20日16:15:00
+ * 主程序启动
+ */
 @SpringBootApplication
 @MapperScan("com.example.springboot.mapper")
 @ServletComponentScan
