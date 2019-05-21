@@ -63,6 +63,6 @@ public class PassController {
         SecurityUtils.getSubject().logout();
         logger.debug("注销后："+SecurityUtils.getSubject().isAuthenticated());
         SecurityUtils.getSubject().getSession().removeAttribute("userName");
-        return "login";
+        return "redirect:/login";
     }
 }
