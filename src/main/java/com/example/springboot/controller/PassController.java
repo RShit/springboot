@@ -30,8 +30,6 @@ public class PassController {
 
         Subject user = SecurityUtils.getSubject();
         logger.debug("登录前："+user.isAuthenticated());
-        /*UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken("zhangsan","zhangsan");
-        user.login(usernamePasswordToken);*/
         if (SecurityUtils.getSubject().isAuthenticated()) {
             return "redirect:/index";
         }
