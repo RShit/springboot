@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th=http://www.thymeleaf.org>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="application/javascript" th:src="@{js/jquery/jquery-3.4.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}">
+    <script type="application/javascript" th:src="@{layui/layui.all.js}"></script>
 </head>
 <body>
+<div id="list">
 
+
+</div>
 </body>
+<script>
+    $(function () {
+        initData();
+    })
+    function initData() {
+        $.ajax({
+            url:"/cdData",
+            data:{},
+            dataType:"json",
+            type:"post",
+            success:function (data) {
+                layer.msg(JSON.stringify(data));
+                showData(data);
+            }
+        })
+    }
+
+    function showData(data) {
+        var html = "";
+        for (var i = 0 ;i < data.length; i++) {
+            var datum = data[i];
+            var id = datum['id'];
+            var chyu = datum['chyu'];
+            var pinyin = datum['pinyin'];
+            var jieshi = datum['jieshi'];
+            var gushi = datum['gushi'];
+            var mp3 = datum['mp3'];
+            html +='<p><span> id、'+id+'</span></p>';
+            html +='\r\n';
+            html +='<p><span> chyu'+chyu+'</span></p>';
+            html +='\r\n';
+            html +='<p><span> pinyin'+pinyin+'</span></p>';
+            html +='\r\n';
+            html +='<p><span> jieshi'+jieshi+'</span></p>';
+            html +='\r\n';
+            html +='<p><span> gushi'+gushi+'</span></p>';
+            html +='\r\n';
+            html +='<p><span> mp3'+mp3+'</span></p>';
+            html +='\r\n';
+        }
+        $("#list").html(html);
+    }
+</script>
 </html>

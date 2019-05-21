@@ -8,8 +8,10 @@
     <script type="application/javascript" th:src="@{layui/layui.all.js}"></script>
 </head>
 <body>
-<div id="data" th:text="${userName}"></div>
+<span th:text="${userName}"></span>
+<div id="data"></div>
 <button id="logout">注销</button>
+<button id="cdHtml">光盘数据显示</button>
 </body>
 <script>
     $(function () {
@@ -29,6 +31,9 @@
     }
     $("#logout").click(function () {
         window.open("/logout","_self");
+    })
+    $("#cdHtml").click(function () {
+        window.open("/cdHtml","_self");
     })
 </script>
 </html>
