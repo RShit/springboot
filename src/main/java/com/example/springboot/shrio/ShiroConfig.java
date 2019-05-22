@@ -1,12 +1,21 @@
 package com.example.springboot.shrio;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
+import org.apache.shiro.web.session.mgt.*;
 import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +30,8 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    private static final Logger logger = LogManager.getLogger(ShiroConfig.class);
     /**
      * 凭证匹配器
      *
@@ -58,6 +69,8 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm());
         securityManager.setSessionManager(sessionManager());
+        securityManager.setCacheManager(ehCacheManager());
+        //securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
     }
 
@@ -94,12 +107,58 @@ public class ShiroConfig {
     }
 
     @Bean
-    public SessionManager sessionManager() {
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+    public SessionManager sessionManager(){
         Collection<SessionListener> listeners = new ArrayList<SessionListener>();
         listeners.add(new MySessionListener());
-        sessionManager.setSessionListeners(listeners);
-        return sessionManager;
+        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
+        shiroSessionManager.setSessionIdCookie(rememberMeCookie());
+        shiroSessionManager.setSessionListeners(listeners);
+        shiroSessionManager.setSessionDAO(sessionDAO());
+        return shiroSessionManager;
     }
 
+    @Bean()
+    public EhCacheManager ehCacheManager() {
+        logger.info("--------------ehCacheManager init---------------");
+        EhCacheManager cacheManager = new EhCacheManager();
+        cacheManager.setCacheManagerConfigFile("classpath:cache/ehcache-shiro.xml");
+        logger.info("--------------ehCacheManager init---------------"+cacheManager);
+        return cacheManager;
+    }
+
+    @Bean
+    public SimpleCookie rememberMeCookie() {
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //保存10天
+        simpleCookie.setMaxAge(7 * 24 * 60 * 60);
+        simpleCookie.setName("shiro.sesssion");
+        simpleCookie.setPath("/");
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setMaxAge(-1);
+        return simpleCookie;
+    }
+
+    /**
+     * cookie管理对象;
+     * @return
+     */
+    @Bean
+    public CookieRememberMeManager rememberMeManager() {
+        try {
+            logger.debug("ShiroConfiguration.rememberMeManager()");
+            CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+            cookieRememberMeManager.setCookie(rememberMeCookie());
+            cookieRememberMeManager.setCipherKey(Base64.decode("kPv59vyqzj00x11LXJZTjJ2UHW48jzHN"));
+            return cookieRememberMeManager;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Bean
+    public SessionDAO sessionDAO(){
+        MemorySessionDAO memorySessionDAO = new MemorySessionDAO();
+        return memorySessionDAO;
+    }
 }

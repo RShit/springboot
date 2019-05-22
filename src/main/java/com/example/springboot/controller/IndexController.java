@@ -15,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019年5月7日16:17:28
  */
 @Controller
-public class IndexController {
+public class IndexController extends BaseController {
     private static Logger logger = LoggerFactory.getLogger(PassController.class);
     @RequestMapping("/index")
     public String index(Model model){
         logger.debug(SecurityUtils.getSubject().isAuthenticated()+"");
-        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
-        System.out.println(principals.asList());
-        SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
-        model.addAttribute("userName",sysUser.getFullName());
+        model.addAttribute("userName",getCurrentUser().getFullName());
         return "index";
     }
 }

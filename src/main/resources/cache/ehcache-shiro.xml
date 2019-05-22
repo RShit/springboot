@@ -1,0 +1,8 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         maxBytesLocalDisk="1G" maxBytesLocalHeap="10M">
+
+    <defaultCache copyOnRead="true" copyOnWrite="true" overflowToOffHeap="false"/>
+    <diskStore path="E:/ehCache/"/>
+    <cache name="ehCacheManager"></cache>
+</ehcache>

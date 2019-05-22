@@ -1,7 +1,9 @@
 package com.example.springboot.entity;
 
 
-public class SysUser {
+import java.io.Serializable;
+
+public class SysUser implements Serializable {
 
   private long userId;
   private String userName;

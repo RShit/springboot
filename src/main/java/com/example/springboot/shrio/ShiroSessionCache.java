@@ -47,5 +47,5 @@ public class ShiroSessionCache {
 		list.addAll(cache.asMap().values());
 		return list;
 	}
-	
+
 }

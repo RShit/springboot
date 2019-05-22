@@ -16,6 +16,7 @@ public class MySessionListener implements SessionListener {
 	@Override
 	public void onExpiration(Session session) {// 会话过期时触发
 		log.debug("Session expiration ID:{}, starttime:{}", session.getId(), session.getStartTimestamp());
+
 		ShiroSessionCache.expire(session.getId());
 	}
 
