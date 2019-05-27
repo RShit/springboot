@@ -34,19 +34,20 @@
         var html = "";
         for (var i = 0 ;i < data.length; i++) {
             var datum = data[i];
-            var id = datum['id'];
-            var title = datum['title'];
-            var blankAr = datum['blankAr'];
-            var article = datum['article'];
-            var mp3 = datum['mp3'];
-            html +='<p><span> id、'+id+'</span></p>';
-            html +='<p><span> title'+title+'</span></p>';
-            html +='<p><span> blankAr'+blankAr+'</span></p>';
-            html +='<p><span> article'+article+'</span></p>';
-            html +='<p><span> mp3'+mp3+'</span></p>';
+            for (var x in datum) {
+                html +='<p><span> '+x+'、'+datum[x]+'</span></p>';
+            }
         }
         $("#list").html(html);
         $(".answer").hide();
+        var offset = sessionStorage.getItem("offsetTop");
+        $(document).scrollTop(offset);
     }
+    $(window).scroll(function () {
+        if ($(document).scrollTop() != 0) {
+            console.log($(window).scrollTop());
+            sessionStorage.setItem("offsetTop", $(window).scrollTop());
+        }
+    })
 </script>
 </html>

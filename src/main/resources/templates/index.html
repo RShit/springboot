@@ -12,6 +12,7 @@
 <div id="data"></div>
 <button id="logout">注销</button>
 <button id="cdHtml">光盘数据显示</button>
+<button id="noticeTest">测试通知</button>
 </body>
 <script>
     $(function () {
@@ -34,6 +35,9 @@
     })
     $("#cdHtml").click(function () {
         window.open("/cdHtml","_self");
+    })
+    $("#noticeTest").click(function () {
+        window.open("/notice/noticeHtml","_self");
     })
 </script>
 </html>

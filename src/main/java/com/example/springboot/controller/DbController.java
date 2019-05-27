@@ -31,7 +31,6 @@ public class DbController {
     @ResponseBody
     public String getProject(){
         List<VocabListDTO> allData = dbService.getAllData();
-
         return JSON.toJSONString(allData);
     }
 }
